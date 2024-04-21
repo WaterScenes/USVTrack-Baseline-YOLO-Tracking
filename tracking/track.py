@@ -98,6 +98,13 @@ def run(args):
     # store custom args in predictor
     yolo.predictor.custom_args = args
 
+    # touch new file, fixed bug for no results
+    p = yolo.predictor.save_dir / 'mot' / (Path(args.source).parent.name + '.txt')
+    yolo.predictor.mot_txt_path = p
+    yolo.predictor.mot_txt_path.parent.mkdir(parents=True, exist_ok=True)
+    # create mot txt file
+    yolo.predictor.mot_txt_path.touch(exist_ok=True)
+    
     for r in results:
 
         img = yolo.predictor.trackers[0].plot_results(r.orig_img, args.show_trajectories)
@@ -150,7 +157,7 @@ def parse_opt():
                         help='hide confidences when show')
     parser.add_argument('--show-trajectories', action='store_true',
                         help='show confidences')
-    parser.add_argument('--save-txt', action='store_true',
+    parser.add_argument('--save-txt', default=True, action='store_true',
                         help='save tracking results in a txt file')
     parser.add_argument('--save-id-crops', action='store_true',
                         help='save each crop to its respective id folder')
