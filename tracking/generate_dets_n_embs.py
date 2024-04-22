@@ -140,7 +140,7 @@ def parse_opt():
                         help='use FP16 half-precision inference')
     parser.add_argument('--vid-stride', type=int, default=1,
                         help='video frame-rate stride')
-    parser.add_argument('--per-class', default=False, action='store_true',
+    parser.add_argument('--per-class', default=True, action='store_true',
                         help='not mix up classes when tracking')
     parser.add_argument('--verbose', default=True, action='store_true',
                         help='print results per frame')
