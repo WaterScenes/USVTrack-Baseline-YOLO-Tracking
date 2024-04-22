@@ -154,7 +154,6 @@ def parse_opt():
 if __name__ == "__main__":
     opt = parse_opt()
     mot_folder_paths = [item for item in Path(opt.source).iterdir()]
-    print(mot_folder_paths)
     for y in opt.yolo_model:
         opt.yolo_model = y
         opt.name = y.stem
