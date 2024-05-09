@@ -35,10 +35,9 @@ CUDA_VISIBLE_DEVICES=0 python examples/val.py --yolo-model /home/shanliang/works
 
 # saves dets and embs under ./runs/dets_n_embs separately for each selected yolo and reid model
 <!-- python tracking/generate_dets_n_embs.py --source ./assets/MOT17-mini/train --yolo-model yolov8n.pt yolov8s.pt --reid-model weights/osnet_x0_25_msmt17.pt -->
-ppython tracking/generate_dets_n_embs.py --yolo-model tracking/weights/yolov8n.pt  --source /home/shanliang/workspace/dataset/USVTrack/Tracking --split test --reid-model tracking/weights/osnet_x0_25_msmt17.pt
+python tracking/generate_dets_n_embs.py --yolo-model /home/shanliang/workspace/code/yolov8/runs/USVTrack/YOLOv8n46/weights/best.pt --source /home/shanliang/workspace/dataset/USVTrack/Tracking/test --reid-model tracking/weights/osnet_x0_25_msmt17.pt
 
 # generate MOT challenge format results based on pregenerated detections and embeddings for a specific trackign method
-$ python tracking/generate_mot_results.py --dets yolov8n --embs osnet_x0_25_msmt17 --tracking-method botsort
 python tracking/generate_mot_results.py --dets yolov8n --embs osnet_x0_25_msmt17 --tracking-method botsort
 
 # uses TrackEval to generate MOT metrics for the tracking results under ./runs/mot/<dets+embs+tracking-method>
